@@ -11,6 +11,7 @@ interface Props {
   font?: FontType;
   color?: keyof Theme;
   align?: Align;
+  password?: boolean;
 }
 
 const TextInput = ({
@@ -20,11 +21,13 @@ const TextInput = ({
   font = FontType.BODY_01,
   color = 'GRAY_100',
   align = Align.LEFT,
+  password = false,
 }: Props) => {
   const style = getStyle(font);
 
   return (
     <TextInputStyled
+      type={password ? 'password' : 'text'}
       value={value}
       onChange={onChangeInput}
       placeholder={placeholder}
