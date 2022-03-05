@@ -11,7 +11,7 @@ export default function Detail({ pondId }: Props) {
 export async function getServerSideProps({ query }) {
   const pondId = query.pondId as string | undefined;
 
-  if (pondId == null) {
+  if (!pondId ) {
     return {
       redirect: {
         destination: '/',
