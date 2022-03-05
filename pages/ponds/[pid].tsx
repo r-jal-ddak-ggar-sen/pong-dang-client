@@ -5,24 +5,23 @@ import Header from 'components/Header';
 import { Layout } from 'components/Layout';
 import Typo from 'components/Typo';
 
-import ShareIcon from '../public/assets/icons/icon-share.svg';
-import MusicIcon from '../public/assets/icons/icon-music.svg';
-import WriteIcon from '../public/assets/icons/icon-write.svg';
-
-import BackgroundImage from '../public/assets/images/image-diary-background.svg';
-import InfoImage from '../public/assets/images/image-diary-info.svg';
-import StickerOneImage from '../public/assets/images/image-diary-sticker-1.svg';
-import StickerTwoImage from '../public/assets/images/image-diary-sticker-2.svg';
-import StickerThreeImage from '../public/assets/images/image-diary-sticker-3.svg';
-import StickerFourImage from '../public/assets/images/image-diary-sticker-4.svg';
-import StickerFiveImage from '../public/assets/images/image-diary-sticker-5.svg';
-import StickerSixImage from '../public/assets/images/image-diary-sticker-6.svg';
-import StickerSevenImage from '../public/assets/images/image-diary-sticker-7.svg';
-import StickerEightImage from '../public/assets/images/image-diary-sticker-8.svg';
-import StickerNineImage from '../public/assets/images/image-diary-sticker-9.svg';
-import StickerTenImage from '../public/assets/images/image-diary-sticker-10.svg';
-import StickerElevenImage from '../public/assets/images/image-diary-sticker-11.svg';
-import StickerTwelveImage from '../public/assets/images/image-diary-sticker-12.svg';
+import ShareIcon from '../../public/assets/icons/icon-share.svg';
+import MusicIcon from '../../public/assets/icons/icon-music.svg';
+import WriteIcon from '../../public/assets/icons/icon-write.svg';
+import BackgroundImage from '../../public/assets/images/image-diary-background.svg';
+import InfoImage from '../../public/assets/images/image-diary-info.svg';
+import StickerOneImage from '../../public/assets/images/image-diary-sticker-1.svg';
+import StickerTwoImage from '../../public/assets/images/image-diary-sticker-2.svg';
+import StickerThreeImage from '../../public/assets/images/image-diary-sticker-3.svg';
+import StickerFourImage from '../../public/assets/images/image-diary-sticker-4.svg';
+import StickerFiveImage from '../../public/assets/images/image-diary-sticker-5.svg';
+import StickerSixImage from '../../public/assets/images/image-diary-sticker-6.svg';
+import StickerSevenImage from '../../public/assets/images/image-diary-sticker-7.svg';
+import StickerEightImage from '../../public/assets/images/image-diary-sticker-8.svg';
+import StickerNineImage from '../../public/assets/images/image-diary-sticker-9.svg';
+import StickerTenImage from '../../public/assets/images/image-diary-sticker-10.svg';
+import StickerElevenImage from '../../public/assets/images/image-diary-sticker-11.svg';
+import StickerTwelveImage from '../../public/assets/images/image-diary-sticker-12.svg';
 
 interface Props {
   pondId: number;
@@ -49,7 +48,7 @@ export default function Pond({ pondId }: Props) {
         />
       }
     >
-      <Link href="/diary">
+      <Link href={`/ponds/${pondId}/diaries`}>
         <ShowDiaryButton>
           <Typo font="SUB_TITLE_02" color="PRIMARY_50">
             일기 보기
@@ -257,17 +256,8 @@ const PondImageTwelve = styled.div`
   bottom: 0;
 `;
 
-export async function getServerSideProps({ query }) {
-  const pondId = query.pondId as string | undefined;
-
-  if (!pondId) {
-    return {
-      redirect: {
-        destination: '/',
-        permanent: false,
-      },
-    };
-  }
+export async function getServerSideProps({ params }) {
+  const pondId = params.pid;
 
   return {
     props: {

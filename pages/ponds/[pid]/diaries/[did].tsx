@@ -3,18 +3,34 @@ import styled from '@emotion/styled';
 import Header from 'components/Header';
 import { Layout } from 'components/Layout';
 import Typo from 'components/Typo';
+import { useEffect, useState } from 'react';
 import WEATHER from 'src/constants/weather';
 import { WeatherName } from 'src/models/weather';
 
-import MoreIcon from '../public/assets/icons/icon-more.svg';
-
-import { sampleDiaryList } from './sampleDiaryList';
+import MoreIcon from '../../../../public/assets/icons/icon-more.svg';
+import { sampleDiaryList } from '../../../sampleDiaryList';
 
 interface Props {
   diaryId: number;
 }
 
+interface Diary {
+  id: number;
+  weather: string;
+  date: string;
+  writer: string;
+  content: string;
+}
+
 export default function Read({ diaryId }: Props) {
+  const [diaryData, setDiaryData] = useState<Diary>();
+
+  useEffect(() => {
+    sampleDiaryList.page.map(
+      (value) => value.id == diaryId && setDiaryData(value),
+    );
+  }, []);
+
   return (
     <Layout
       header={
@@ -28,21 +44,25 @@ export default function Read({ diaryId }: Props) {
         />
       }
     >
-      <ReadTitle>
-        <Typo font="TITLE_01">{sampleDiaryList.page[0].date}</Typo>
-        <WeatherStyled>
-          {WEATHER[sampleDiaryList.page[0].weather as WeatherName].icon}
-          <Typo font="SUB_TITLE_02" color="GRAY_80" css={{ marginLeft: 4 }}>
-            {WEATHER[sampleDiaryList.page[0].weather as WeatherName].name}
-          </Typo>
-        </WeatherStyled>
-      </ReadTitle>
-      <ReadInfo>
-        <Typo font="BODY_01" color="GRAY_70" css={{ marginBottom: 24 }}>
-          {sampleDiaryList.page[0].writer}
-        </Typo>
-        <Typo>{sampleDiaryList.page[0].content}</Typo>
-      </ReadInfo>
+      {diaryData && (
+        <>
+          <ReadTitle>
+            <Typo font="TITLE_01">{diaryData.date}</Typo>
+            <WeatherStyled>
+              {WEATHER[diaryData.weather as WeatherName].icon}
+              <Typo font="SUB_TITLE_02" color="GRAY_80" css={{ marginLeft: 4 }}>
+                {WEATHER[diaryData.weather as WeatherName].name}
+              </Typo>
+            </WeatherStyled>
+          </ReadTitle>
+          <ReadInfo>
+            <Typo font="BODY_01" color="GRAY_70" css={{ marginBottom: 24 }}>
+              {diaryData.writer}
+            </Typo>
+            <Typo>{diaryData.content}</Typo>
+          </ReadInfo>
+        </>
+      )}
     </Layout>
   );
 }
@@ -79,17 +99,8 @@ const ReadInfo = styled.div`
   white-space: pre-line;
 `;
 
-export async function getServerSideProps({ query }) {
-  const diaryId = query.diaryId as string | undefined;
-
-  if (!diaryId) {
-    return {
-      redirect: {
-        destination: '/',
-        permanent: false,
-      },
-    };
-  }
+export async function getServerSideProps({ params }) {
+  const diaryId = params.did;
 
   return {
     props: {

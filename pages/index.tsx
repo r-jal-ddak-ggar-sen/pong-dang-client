@@ -46,7 +46,7 @@ export default function Home() {
         ) : (
           samplePondList.map((value) => {
             return (
-              <Link key={value.id} href={`/pond?pondId=${value.id}`}>
+              <Link key={value.id} href={`/ponds/${value.id}`}>
                 <PondItem key={`pond-${value.id}`}>
                   <PondItemInfo>
                     <Typo font="TITLE_01" css={{ marginBottom: 8 }}>

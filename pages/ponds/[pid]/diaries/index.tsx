@@ -8,7 +8,7 @@ import Typo from 'components/Typo';
 import WEATHER from 'src/constants/weather';
 import { WeatherName } from 'src/models/weather';
 
-import { sampleDiaryList } from './sampleDiaryList';
+import { sampleDiaryList } from '../../../sampleDiaryList';
 
 export default function Diary() {
   return (
@@ -28,7 +28,7 @@ export default function Diary() {
         ) : (
           sampleDiaryList.page.map((value, index) => {
             return (
-              <Link key={value.id} href={`/read?diaryId=${value.id}`}>
+              <Link key={value.id} href={`/ponds/1/diaries/${value.id}`}>
                 <DiaryItem
                   key={`diary-${value.id}`}
                   isPadding={index % 2 === 0}
