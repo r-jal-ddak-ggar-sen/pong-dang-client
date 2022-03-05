@@ -23,6 +23,4 @@ const StyledWrapper = styled.div`
 
 const ContentsWrapper = styled.div`
   flex: 1;
-  padding-left: 16px;
-  padding-right: 16px;
 `;
