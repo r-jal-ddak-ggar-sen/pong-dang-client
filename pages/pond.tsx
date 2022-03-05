@@ -28,7 +28,7 @@ interface Props {
   pondId: number;
 }
 
-export default function Detail({ pondId }: Props) {
+export default function Pond({ pondId }: Props) {
   const level = 12;
 
   return (
@@ -49,84 +49,86 @@ export default function Detail({ pondId }: Props) {
         />
       }
     >
-      <ShowDiaryButton>
-        <Typo font="SUB_TITLE_02" color="PRIMARY_50">
-          일기 보기
-        </Typo>
-      </ShowDiaryButton>
+      <Link href="/diary">
+        <ShowDiaryButton>
+          <Typo font="SUB_TITLE_02" color="PRIMARY_50">
+            일기 보기
+          </Typo>
+        </ShowDiaryButton>
+      </Link>
       <Link href="/write">
         <WriteButton>
           <WriteIcon />
         </WriteButton>
       </Link>
-      <DetailImageBox>
-        <DetailImageBackground>
+      <PondImageBox>
+        <PondImageBackground>
           <BackgroundImage width="100%" height="100%" />
-        </DetailImageBackground>
-        <DetailImageInfo>
+        </PondImageBackground>
+        <PondImageInfo>
           <InfoImage />
-        </DetailImageInfo>
+        </PondImageInfo>
         {level > 0 && (
-          <DetailImageOne>
+          <PondImageOne>
             <StickerOneImage />
-          </DetailImageOne>
+          </PondImageOne>
         )}
         {level > 1 && (
-          <DetailImageTwo>
+          <PondImageTwo>
             <StickerTwoImage />
-          </DetailImageTwo>
+          </PondImageTwo>
         )}
         {level > 2 && (
-          <DetailImageThree>
+          <PondImageThree>
             <StickerThreeImage />
-          </DetailImageThree>
+          </PondImageThree>
         )}
         {level > 3 && (
-          <DetailImageFour>
+          <PondImageFour>
             <StickerFourImage />
-          </DetailImageFour>
+          </PondImageFour>
         )}
         {level > 4 && (
-          <DetailImageFive>
+          <PondImageFive>
             <StickerFiveImage />
-          </DetailImageFive>
+          </PondImageFive>
         )}
         {level > 5 && (
-          <DetailImageSix>
+          <PondImageSix>
             <StickerSixImage />
-          </DetailImageSix>
+          </PondImageSix>
         )}
         {level > 6 && (
-          <DetailImageSeven>
+          <PondImageSeven>
             <StickerSevenImage />
-          </DetailImageSeven>
+          </PondImageSeven>
         )}
         {level > 7 && (
-          <DetailImageEight>
+          <PondImageEight>
             <StickerEightImage />
-          </DetailImageEight>
+          </PondImageEight>
         )}
         {level > 8 && (
-          <DetailImageNine>
+          <PondImageNine>
             <StickerNineImage />
-          </DetailImageNine>
+          </PondImageNine>
         )}
         {level > 9 && (
-          <DetailImageTen>
+          <PondImageTen>
             <StickerTenImage />
-          </DetailImageTen>
+          </PondImageTen>
         )}
         {level > 10 && (
-          <DetailImageEleven>
+          <PondImageEleven>
             <StickerElevenImage />
-          </DetailImageEleven>
+          </PondImageEleven>
         )}
         {level > 11 && (
-          <DetailImageTwelve>
+          <PondImageTwelve>
             <StickerTwelveImage />
-          </DetailImageTwelve>
+          </PondImageTwelve>
         )}
-      </DetailImageBox>
+      </PondImageBox>
     </Layout>
   );
 }
@@ -157,7 +159,7 @@ const WriteButton = styled.a`
   z-index: 998;
 `;
 
-const DetailImageBox = styled.div`
+const PondImageBox = styled.div`
   width: 100%;
   height: 100%;
   position: absolute;
@@ -167,7 +169,7 @@ const DetailImageBox = styled.div`
   bottom: 0;
 `;
 
-const DetailImageBackground = styled.div`
+const PondImageBackground = styled.div`
   width: 100%;
   height: 100%;
   position: absolute;
@@ -177,79 +179,79 @@ const DetailImageBackground = styled.div`
   z-index: 0;
 `;
 
-const DetailImageInfo = styled.div`
+const PondImageInfo = styled.div`
   position: absolute;
   top: 434px;
   left: 24px;
 `;
 
-const DetailImageOne = styled.div`
+const PondImageOne = styled.div`
   position: absolute;
   left: 0;
   bottom: 0;
 `;
 
-const DetailImageTwo = styled.div`
+const PondImageTwo = styled.div`
   position: absolute;
   right: 0;
   bottom: 0;
 `;
 
-const DetailImageThree = styled.div`
+const PondImageThree = styled.div`
   position: absolute;
   left: 34%;
   bottom: 0;
 `;
 
-const DetailImageFour = styled.div`
+const PondImageFour = styled.div`
   position: absolute;
   top: 20%;
   left: 0;
 `;
 
-const DetailImageFive = styled.div`
+const PondImageFive = styled.div`
   position: absolute;
   top: 10%;
   right: 0;
 `;
 
-const DetailImageSix = styled.div`
+const PondImageSix = styled.div`
   position: absolute;
   left: 14%;
   bottom: 20%;
 `;
 
-const DetailImageSeven = styled.div`
+const PondImageSeven = styled.div`
   position: absolute;
   left: 42%;
   bottom: 28%;
 `;
 
-const DetailImageEight = styled.div`
+const PondImageEight = styled.div`
   position: absolute;
   left: 20%;
   bottom: 22%;
 `;
 
-const DetailImageNine = styled.div`
+const PondImageNine = styled.div`
   position: absolute;
   right: 18%;
   bottom: 16%;
 `;
 
-const DetailImageTen = styled.div`
+const PondImageTen = styled.div`
   position: absolute;
   left: 40%;
   bottom: 43%;
 `;
 
-const DetailImageEleven = styled.div`
+const PondImageEleven = styled.div`
   position: absolute;
   left: 46%;
   bottom: 41%;
 `;
 
-const DetailImageTwelve = styled.div`
+const PondImageTwelve = styled.div`
   position: absolute;
   left: 20%;
   bottom: 0;
