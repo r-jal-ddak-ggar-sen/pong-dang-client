@@ -4,6 +4,8 @@ import React from 'react';
 
 import Typo from 'src/components/Typo';
 
+import BackIcon from '../../public/assets/icons/icon-back.svg';
+
 interface Props {
   title?: string;
   isBack?: boolean;
@@ -18,7 +20,7 @@ const Header = ({ title, isBack = false, right }: Props) => {
       {isBack && (
         <HeaderLeft>
           <BackButton onClick={() => router.back()}>
-            <Typo font="CAPTION_01">뒤로가기</Typo>
+            <BackIcon />
           </BackButton>
         </HeaderLeft>
       )}
