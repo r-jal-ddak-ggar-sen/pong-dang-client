@@ -1,4 +1,4 @@
-import { ReactNode } from 'react';
+import { CSSProperties, ReactNode } from 'react';
 
 import { FontType, getStyle, Align } from 'src/utils/font';
 import { Theme, theme } from 'src/utils/theme';
@@ -11,6 +11,7 @@ interface Props {
   font?: FontType;
   color?: keyof Theme;
   align?: Align;
+  css?: CSSProperties;
 }
 
 const Typo = ({
@@ -19,6 +20,7 @@ const Typo = ({
   font = FontType.BODY_01,
   color = 'GRAY_100',
   align = Align.LEFT,
+  css,
 }: Props) => {
   const TagComponent = tag as TypoTag;
   const style = getStyle(font);
@@ -33,6 +35,7 @@ const Typo = ({
         color: theme[color],
         textAlign: align,
         lineHeight: 1.4,
+        ...css,
       }}
     >
       {children}
