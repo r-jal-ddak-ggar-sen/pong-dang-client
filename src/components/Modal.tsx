@@ -68,7 +68,7 @@ const ModalStyled = styled.div`
 
 const ModalBox = styled.div`
   width: calc(100% - 56px);
-  max-width: 340px;
+  max-width: 300px;
   display: flex;
   flex-direction: column;
   justify-content: center;
