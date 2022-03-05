@@ -4,15 +4,24 @@ import React, { useState } from 'react';
 import Header from 'components/Header';
 import { Button } from 'components/Button';
 import Modal from 'components/Modal';
+import Typo from 'components/Typo';
 
 export default function Home() {
   const [visibleModal, setVisibleModal] = useState(false);
 
   return (
     <>
-      <Header />
       <HomeStyled>
-        <Button onClick={() => setVisibleModal(true)}>Modal Open</Button>
+        <Header
+          right={
+            <LogoutButton>
+              <Typo font="CAPTION_01">로그아웃</Typo>
+            </LogoutButton>
+          }
+        />
+        <HomeView>
+          <Button onClick={() => setVisibleModal(true)}>Modal Open</Button>
+        </HomeView>
       </HomeStyled>
       {visibleModal && (
         <Modal
@@ -28,4 +37,21 @@ export default function Home() {
   );
 }
 
-const HomeStyled = styled.div``;
+const HomeStyled = styled.section`
+  width: 100%;
+  max-width: 420px;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+`;
+
+const HomeView = styled.div`
+  width: 100%;
+  height: calc(100% - 56px);
+  padding: 0 15px;
+`;
+
+const LogoutButton = styled.button``;

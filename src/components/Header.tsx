@@ -1,19 +1,53 @@
 import styled from '@emotion/styled';
+import { useRouter } from 'next/router';
 import React from 'react';
 
 import Typo from 'src/components/Typo';
-import { FontType } from 'src/utils/font';
 
-const Header = () => {
+interface Props {
+  title?: string;
+  isBack?: boolean;
+  right?: React.ReactNode;
+}
+
+const Header = ({ title, isBack = false, right }: Props) => {
+  const router = useRouter();
+
   return (
     <HeaderStyled>
-      <Typo font={FontType.HEAD_01} color="GRAY_80">
-        헤더
-      </Typo>
+      {isBack && (
+        <HeaderLeft>
+          <BackButton onClick={() => router.back()}>
+            <Typo font="CAPTION_01">뒤로가기</Typo>
+          </BackButton>
+        </HeaderLeft>
+      )}
+      <Typo font="TITLE_01">{title}</Typo>
+      <HeaderRight>{right}</HeaderRight>
     </HeaderStyled>
   );
 };
 
-const HeaderStyled = styled.div``;
+const HeaderStyled = styled.div`
+  width: 100%;
+  height: 56px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  z-index: 999;
+`;
+
+const HeaderLeft = styled.div`
+  position: absolute;
+  left: 16px;
+`;
+
+const BackButton = styled.button``;
+
+const HeaderRight = styled.div`
+  position: absolute;
+  right: 16px;
+`;
 
 export default Header;
