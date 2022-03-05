@@ -20,52 +20,51 @@ export default function Home() {
     <Layout
       header={
         <Header
-        right={
-          <LogoutButton onClick={() => setVisibleModal(true)}>
-            <Typo font="CAPTION_01">로그아웃</Typo>
-          </LogoutButton>
-        }
-      />
+          right={
+            <LogoutButton onClick={() => setVisibleModal(true)}>
+              <Typo font="CAPTION_01">로그아웃</Typo>
+            </LogoutButton>
+          }
+        />
       }
+      backgroundColor={'GRAY_05'}
     >
-      <HomeStyled>
-        <Link href={`/create`}>
-          <MakePondButton>
-            <Typo>연못만들기</Typo>
-          </MakePondButton>
-        </Link>
-        <PondList>
-          {samplePondList.length <= 0 ? (
-            <NonePond>
-              <Typo color="GRAY_50" align="center">
-                아직 연못이 없어요 :)
-                <br />
-                친구와 함께 연못을 만들어봐요!
-              </Typo>
-            </NonePond>
-          ) : (
-            samplePondList.map((value) => {
-              return (
-                <Link key={value.id} href={`/detail?pondId=${value.id}`}>
-                  <PondItem key={`pond-${value.id}`}>
-                    <PondItemInfo>
-                      <Typo font="TITLE_01" css={{ marginBottom: 8 }}>
-                        {value.title}
-                      </Typo>
-                      <Typo font="BODY_02" color="GRAY_70">
-                        {value.owners[0]}{' '}
-                        {value.owners.length > 1 &&
-                          `외 ${value.owners.length - 1}명`}
-                      </Typo>
-                    </PondItemInfo>
-                    <PondItemImage src={value.backgroundImage} />
-                  </PondItem>
-                </Link>
-              );
-            })
-          )}
-        </PondList>
-      </HomeStyled>
+      <Link href={`/create`}>
+        <MakePondButton>
+          <Typo align="center">연못만들기</Typo>
+        </MakePondButton>
+      </Link>
+      <PondList>
+        {samplePondList.length <= 0 ? (
+          <NonePond>
+            <Typo color="GRAY_50" align="center">
+              아직 연못이 없어요 :)
+              <br />
+              친구와 함께 연못을 만들어봐요!
+            </Typo>
+          </NonePond>
+        ) : (
+          samplePondList.map((value) => {
+            return (
+              <Link key={value.id} href={`/detail?pondId=${value.id}`}>
+                <PondItem key={`pond-${value.id}`}>
+                  <PondItemInfo>
+                    <Typo font="TITLE_01" css={{ marginBottom: 8 }}>
+                      {value.title}
+                    </Typo>
+                    <Typo font="BODY_02" color="GRAY_70">
+                      {value.owners[0]}{' '}
+                      {value.owners.length > 1 &&
+                        `외 ${value.owners.length - 1}명`}
+                    </Typo>
+                  </PondItemInfo>
+                  <PondItemImage src={value.backgroundImage} />
+                </PondItem>
+              </Link>
+            );
+          })
+        )}
+      </PondList>
       {visibleModal && (
         <Modal
           title="로그아웃 하시겠어요?"
@@ -79,19 +78,6 @@ export default function Home() {
     </Layout>
   );
 }
-
-const HomeStyled = styled.section`
-  width: 100%;
-  max-width: 420px;
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin: 0 auto;
-  padding: 0 15px;
-  padding-top: 56px;
-  background-color: ${({ theme }) => theme.GRAY_05};
-`;
 
 const MakePondButton = styled.a`
   width: 80px;
