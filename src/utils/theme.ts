@@ -3,6 +3,7 @@ export const theme = {
   GRAY_100: '#1C1C1C',
   GRAY_90: '#454443',
   GRAY_80: '#575756',
+  GRAY_70: '#72716F',
   GRAY_60: '#7C7E88',
   GRAY_50: '#ADAAA5',
   GRAY_40: '#BBBBBB',

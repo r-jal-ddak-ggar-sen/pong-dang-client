@@ -30,11 +30,12 @@ const Header = ({ title, isBack = false, right }: Props) => {
 
 const HeaderStyled = styled.div`
   width: 100%;
+  max-width: 420px;
   height: 56px;
   display: flex;
   justify-content: center;
   align-items: center;
-  position: relative;
+  position: fixed;
   z-index: 999;
 `;
 

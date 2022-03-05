@@ -1,61 +1,120 @@
 import styled from '@emotion/styled';
-import React, { useState } from 'react';
+import { useState } from 'react';
+import Link from 'next/link';
 
-import Header from 'components/Header';
-import { Button } from 'components/Button';
 import Modal from 'components/Modal';
 import Typo from 'components/Typo';
+import Header from 'components/Header';
 import { Layout } from 'components/Layout';
+
+import { samplePondList } from './samplePondList';
 
 export default function Home() {
   const [visibleModal, setVisibleModal] = useState(false);
+
+  const handleLogoutButtonClick = () => {
+    setVisibleModal(false);
+  };
 
   return (
     <Layout
       header={
         <Header
           right={
-            <LogoutButton>
+            <LogoutButton onClick={() => setVisibleModal(true)}>
               <Typo font="CAPTION_01">로그아웃</Typo>
             </LogoutButton>
           }
         />
       }
+      backgroundColor={'GRAY_05'}
     >
-      <>
-        <HomeView>
-          <Button onClick={() => setVisibleModal(true)}>Modal Open</Button>
-        </HomeView>
-        {visibleModal && (
-          <Modal
-            title="아직 일기가 저장되지 않았어요."
-            content="저장하지 않고 뒤로 가시겠어요?"
-            prevButtonText="계속쓰기"
-            onPrevButtonClick={() => setVisibleModal(false)}
-            nextButtonText="뒤로가기"
-            onNextButtonClick={() => setVisibleModal(false)}
-          />
+      <Link href={`/create`}>
+        <MakePondButton>
+          <Typo align="center">연못만들기</Typo>
+        </MakePondButton>
+      </Link>
+      <PondList>
+        {samplePondList.length <= 0 ? (
+          <NonePond>
+            <Typo color="GRAY_50" align="center">
+              아직 연못이 없어요 :)
+              <br />
+              친구와 함께 연못을 만들어봐요!
+            </Typo>
+          </NonePond>
+        ) : (
+          samplePondList.map((value) => {
+            return (
+              <Link key={value.id} href={`/detail?pondId=${value.id}`}>
+                <PondItem key={`pond-${value.id}`}>
+                  <PondItemInfo>
+                    <Typo font="TITLE_01" css={{ marginBottom: 8 }}>
+                      {value.title}
+                    </Typo>
+                    <Typo font="BODY_02" color="GRAY_70">
+                      {value.owners[0]}{' '}
+                      {value.owners.length > 1 &&
+                        `외 ${value.owners.length - 1}명`}
+                    </Typo>
+                  </PondItemInfo>
+                  <PondItemImage src={value.backgroundImage} />
+                </PondItem>
+              </Link>
+            );
+          })
         )}
-      </>
+      </PondList>
+      {visibleModal && (
+        <Modal
+          title="로그아웃 하시겠어요?"
+          content="다시 로그인 하기 위해 꼭 닉네임과 비밀번호를 기억해주세요!"
+          prevButtonText="취소"
+          onPrevButtonClick={() => setVisibleModal(false)}
+          nextButtonText="로그아웃"
+          onNextButtonClick={handleLogoutButtonClick}
+        />
+      )}
     </Layout>
   );
 }
 
-const HomeStyled = styled.section`
-  width: 100%;
-  max-width: 420px;
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
+const MakePondButton = styled.a`
+  width: 80px;
+  height: 80px;
+  display: inline-flex;
   justify-content: center;
   align-items: center;
-  margin: 0 auto;
+  background-color: ${({ theme }) => theme.GRAY_20};
+  border-radius: 50%;
+  margin-top: 24px;
+  margin-bottom: 32px;
 `;
 
-const HomeView = styled.div`
-  width: 100%;
-  height: calc(100% - 56px);
-  padding: 0 15px;
+const NonePond = styled.div`
+  margin-top: 20vh;
 `;
+
+const PondList = styled.div`
+  width: 100%;
+  height: 60vh;
+  overflow-y: scroll;
+`;
+
+const PondItem = styled.a`
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  background-color: ${({ theme }) => theme.WHITE};
+  border-radius: 8px;
+  padding: 16px;
+  margin: 8px 0;
+`;
+
+const PondItemInfo = styled.div``;
+
+const PondItemImage = styled.img``;
 
 const LogoutButton = styled.button``;
