@@ -10,7 +10,7 @@ export default function Home() {
 
   return (
     <>
-      <Header />
+      <Header title="연못 만들기" />
       <HomeStyled>
         <Button onClick={() => setVisibleModal(true)}>Modal Open</Button>
       </HomeStyled>
