@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import { useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import Link from 'next/link';
 
 import Modal from 'components/Modal';
@@ -8,6 +8,8 @@ import Header from 'components/Header';
 import { Layout } from 'components/Layout';
 
 import { samplePondList } from './samplePondList';
+import { useRouter } from 'next/router';
+import UserContext from 'context/user';
 
 export default function Home() {
   const [visibleModal, setVisibleModal] = useState(false);
@@ -15,6 +17,13 @@ export default function Home() {
   const handleLogoutButtonClick = () => {
     setVisibleModal(false);
   };
+  const router = useRouter();
+  const { mid } = useContext(UserContext);
+  useEffect(() => {
+    if (!mid) {
+      router.push('/sign');
+    }
+  }, []);
 
   return (
     <Layout
@@ -29,7 +38,7 @@ export default function Home() {
       }
       backgroundColor={'GRAY_05'}
     >
-      <Link href={'/create'}>
+      <Link href={'/ponds/new'}>
         <MakePondButton>
           <Typo align="center">연못만들기</Typo>
         </MakePondButton>

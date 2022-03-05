@@ -6,13 +6,18 @@ import { theme } from 'src/utils/theme';
 import Header from 'components/Header';
 import 'styles/global.css';
 import UserProvider from 'provider/UserProvider';
+import { QueryClient, QueryClientProvider } from 'react-query';
+
+const queryClient = new QueryClient();
 
 export default function App({ Component, pageProps, router }: AppProps) {
   return (
-    <ThemeProvider theme={theme}>
-      <UserProvider>
-        <Component {...pageProps} />
-      </UserProvider>
-    </ThemeProvider>
+    <QueryClientProvider client={queryClient}>
+      <ThemeProvider theme={theme}>
+        <UserProvider>
+          <Component {...pageProps} />
+        </UserProvider>
+      </ThemeProvider>
+    </QueryClientProvider>
   );
 }
