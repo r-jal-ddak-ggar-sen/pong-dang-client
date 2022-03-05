@@ -7,6 +7,7 @@ export type ButtonProps = {
   disabled?: boolean;
   outline?: boolean;
   full?: boolean;
+  onClick?: () => void;
 };
 
 export function Button({
@@ -14,9 +15,15 @@ export function Button({
   disabled = false,
   outline = false,
   full = false,
+  onClick,
 }: ButtonProps): ReactElement {
   return (
-    <StyledButton disabled={disabled} outline={outline} full={full}>
+    <StyledButton
+      disabled={disabled}
+      outline={outline}
+      full={full}
+      onClick={onClick}
+    >
       <Typo color={outline ? 'PRIMARY_50' : 'WHITE'} align="center">
         {children}
       </Typo>
