@@ -37,4 +37,5 @@ const ContentsWrapper = styled.div`
   height: 100%;
   padding: 0 16px;
   padding-top: 56px;
+  padding-bottom: 24px;
 `;
