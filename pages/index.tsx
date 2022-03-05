@@ -29,7 +29,7 @@ export default function Home() {
       }
       backgroundColor={'GRAY_05'}
     >
-      <Link href={`/create`}>
+      <Link href={'/create'}>
         <MakePondButton>
           <Typo align="center">연못만들기</Typo>
         </MakePondButton>
@@ -87,7 +87,7 @@ const MakePondButton = styled.a`
   align-items: center;
   background-color: ${({ theme }) => theme.GRAY_20};
   border-radius: 50%;
-  margin-top: 24px;
+  padding-top: 80px;
   margin-bottom: 32px;
 `;
 
