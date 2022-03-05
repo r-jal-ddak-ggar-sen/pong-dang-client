@@ -9,7 +9,7 @@ interface Props {
   tag?: TypoTag;
   children: ReactNode;
   font?: FontType;
-  color?: Theme;
+  color?: keyof Theme;
   align?: Align;
 }
 
@@ -17,7 +17,7 @@ const Typo = ({
   tag = 'p',
   children,
   font = FontType.BODY_01,
-  color = theme.GRAY_100,
+  color = 'GRAY_100',
   align = Align.LEFT,
 }: Props) => {
   const TagComponent = tag as TypoTag;
@@ -30,7 +30,7 @@ const Typo = ({
           style.weight === 700 ? 'IM_Hyemin-Bold' : 'IM_Hyemin-Regular',
         fontSize: style.size,
         fontWeight: style.weight,
-        color: color,
+        color: theme[color],
         textAlign: align,
         lineHeight: 1.4,
       }}

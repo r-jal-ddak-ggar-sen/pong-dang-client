@@ -15,4 +15,4 @@ export const theme = {
   PRIMARY_50: '#7C9A92',
 };
 
-export type Theme = typeof theme[keyof typeof theme];
+export type Theme = typeof theme;
