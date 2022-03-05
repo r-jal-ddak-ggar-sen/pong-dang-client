@@ -1,6 +1,13 @@
 import styled from '@emotion/styled';
+import UserContext from 'context/user';
 import { useRouter } from 'next/router';
-import React, { ReactElement, useCallback, useMemo, useState } from 'react';
+import React, {
+  ReactElement,
+  useCallback,
+  useContext,
+  useMemo,
+  useState,
+} from 'react';
 import { instance } from 'src/utils/api';
 import { Button } from './Button';
 import TextInput from './TextInput';
@@ -39,6 +46,7 @@ export function SigninForm(): ReactElement {
     }
     return result;
   }, [nickname, password]);
+  const { setMid } = useContext(UserContext);
   const handleSubmit = useCallback(async () => {
     if (!valid()) {
       return false;
@@ -49,7 +57,7 @@ export function SigninForm(): ReactElement {
         password,
       });
       if (data.returnCode === '0000') {
-        //Todo context api 추가
+        setMid?.(data.info.mid);
         router.push('/');
       } else {
         setNicknameError('닉네임을 확인해주세요.');
