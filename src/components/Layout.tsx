@@ -1,9 +1,9 @@
 import styled from '@emotion/styled';
-import React, { ReactElement } from 'react';
+import React, { ReactElement, ReactNode } from 'react';
 
 export type LayoutProps = {
-  children: ReactElement;
-  header: null | ReactElement;
+  children: ReactNode;
+  header?: null | ReactElement;
 };
 
 export function Layout({ children, header }: LayoutProps): ReactElement {

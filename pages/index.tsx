@@ -5,6 +5,7 @@ import Link from 'next/link';
 import Modal from 'components/Modal';
 import Typo from 'components/Typo';
 import Header from 'components/Header';
+import { Layout } from 'components/Layout';
 
 import { samplePondList } from './samplePondList';
 
@@ -16,14 +17,17 @@ export default function Home() {
   };
 
   return (
-    <>
-      <Header
+    <Layout
+      header={
+        <Header
         right={
           <LogoutButton onClick={() => setVisibleModal(true)}>
             <Typo font="CAPTION_01">로그아웃</Typo>
           </LogoutButton>
         }
       />
+      }
+    >
       <HomeStyled>
         <Link href={`/create`}>
           <MakePondButton>
@@ -72,7 +76,7 @@ export default function Home() {
           onNextButtonClick={handleLogoutButtonClick}
         />
       )}
-    </>
+    </Layout>
   );
 }
 

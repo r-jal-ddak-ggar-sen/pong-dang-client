@@ -3,6 +3,8 @@ import React, { useState, useCallback } from 'react';
 
 import TextInput from 'components/TextInput';
 import Typo from 'components/Typo';
+import { Layout } from 'components/Layout';
+import Header from 'components/Header';
 
 export default function signin() {
   const [nickname, setNickname] = useState('');
@@ -17,7 +19,7 @@ export default function signin() {
   );
 
   return (
-    <SigninStyled>
+    <Layout header={<Header title='로그인' />}>
       <SigninBox>
         <SigninItem>
           <Typo font="SUB_TITLE_02">닉네임</Typo>
@@ -28,19 +30,9 @@ export default function signin() {
           />
         </SigninItem>
       </SigninBox>
-    </SigninStyled>
+    </Layout>
   );
 }
-
-const SigninStyled = styled.div`
-  width: 100%;
-  max-width: 520px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 0 auto;
-  padding: 100px 15px;
-`;
 
 const SigninBox = styled.div`
   width: 100%;
