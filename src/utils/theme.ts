@@ -13,6 +13,15 @@ export const theme = {
 
   PRIMARY_60: '#6C7B77',
   PRIMARY_50: '#7C9A92',
+
+  SECONDARY_BLUE_50: '#BED7EA',
+
+  SECONDARY_BEIGE_5: '#F5EEE4',
+  SECONDARY_BEIGE_50: '#B8A898',
+
+  SECONDARY_YELLOW_50: '#ECB84B',
+
+  ERROR_50: '#DD5F6E',
 };
 
 export type Theme = typeof theme;
