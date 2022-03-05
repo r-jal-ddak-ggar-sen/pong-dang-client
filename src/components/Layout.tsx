@@ -35,6 +35,6 @@ const StyledWrapper = styled.div<{ backgroundColor: keyof Theme }>`
 const ContentsWrapper = styled.div`
   width: 100%;
   height: 100%;
-  padding: 0 15px;
+  padding: 0 16px;
   padding-top: 56px;
 `;
