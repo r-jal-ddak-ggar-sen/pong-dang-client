@@ -14,6 +14,7 @@ interface Props {
   onPrevButtonClick?: () => void;
   nextButtonText: string;
   onNextButtonClick: () => void;
+  isNextButtonDisabled?: boolean;
 }
 
 const Modal = ({
@@ -25,6 +26,7 @@ const Modal = ({
   onPrevButtonClick,
   nextButtonText,
   onNextButtonClick,
+  isNextButtonDisabled = false,
 }: Props) => {
   const { modalRef } = useOutsideEvent<HTMLDivElement>({
     onOutsideClick: () => {
@@ -39,14 +41,16 @@ const Modal = ({
         <Typo font="SUB_TITLE_02" css={{ marginBottom: 8 }}>
           {title}
         </Typo>
-        <Typo css={{ marginBottom: 24 }}>{content}</Typo>
+        {content && <Typo css={{ marginBottom: 24 }}>{content}</Typo>}
         {action}
         <ModalButtonStyled>
           <Button onClick={onPrevButtonClick} outline>
             {prevButtonText}
           </Button>
           <ModalButtonPadding />
-          <Button onClick={onNextButtonClick}>{nextButtonText}</Button>
+          <Button onClick={onNextButtonClick} disabled={isNextButtonDisabled}>
+            {nextButtonText}
+          </Button>
         </ModalButtonStyled>
       </ModalBox>
     </ModalStyled>
