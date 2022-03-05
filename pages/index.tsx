@@ -12,6 +12,4 @@ export default function Home() {
   );
 }
 
-const HomeStyled = styled.div`
-  color: ${({ theme }) => theme.Primary};
-`;
+const HomeStyled = styled.div``;

@@ -3,11 +3,14 @@ import React from 'react';
 
 import { theme } from 'src/utils/theme';
 import Typo from 'src/components/Typo';
+import { FontType } from 'src/utils/font';
 
 const Header = () => {
   return (
     <HeaderStyled>
-      <Typo color={theme.GRAY_80}>Header</Typo>
+      <Typo font={FontType.HEAD_01} color={theme.GRAY_80}>
+        헤더
+      </Typo>
     </HeaderStyled>
   );
 };

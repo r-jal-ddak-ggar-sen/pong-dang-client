@@ -1,6 +1,6 @@
 import { ReactNode } from 'react';
 
-import { FontType, Align } from 'src/utils/font';
+import { FontType, getStyle, Align } from 'src/utils/font';
 import { Theme, theme } from 'src/utils/theme';
 
 type TypoTag = 'h1' | 'h2' | 'h3' | 'h4' | 'p' | 'span';
@@ -16,18 +16,18 @@ interface Props {
 const Typo = ({
   tag = 'p',
   children,
-  // font = FontType.BODY_01,
+  font = FontType.BODY_01,
   color = theme.GRAY_100,
   align = Align.LEFT,
 }: Props) => {
   const TagComponent = tag as TypoTag;
-  // const style = Font.getStyle(font);
+  const style = getStyle(font);
 
   return (
     <TagComponent
       style={{
-        // fontSize: style.size,
-        // fontWeight: style.weight,
+        fontSize: style.size,
+        fontWeight: style.weight,
         color: color,
         textAlign: align,
         lineHeight: 1.4,
