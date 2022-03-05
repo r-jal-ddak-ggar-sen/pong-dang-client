@@ -11,6 +11,8 @@ interface Props {
   font?: FontType;
   color?: keyof Theme;
   align?: Align;
+  password?: boolean;
+  error?: boolean;
 }
 
 const TextInput = ({
@@ -20,18 +22,22 @@ const TextInput = ({
   font = FontType.BODY_01,
   color = 'GRAY_100',
   align = Align.LEFT,
+  password = false,
+  error = false,
 }: Props) => {
   const style = getStyle(font);
 
   return (
     <TextInputStyled
+      type={password ? 'password' : 'text'}
       value={value}
       onChange={onChangeInput}
       placeholder={placeholder}
       size={style.size}
       weight={style.weight}
-      color={color}
+      color={theme[color]}
       align={align}
+      error={error}
     />
   );
 };
@@ -41,6 +47,7 @@ const TextInputStyled = styled.input<{
   weight: number;
   color: string;
   align: string;
+  error: boolean;
 }>`
   width: 100%;
   font-family: ${({ weight }) =>
@@ -51,6 +58,7 @@ const TextInputStyled = styled.input<{
   text-align: ${({ align }) => align};
   padding: 15px 0;
   border-bottom: 2px solid ${theme.PRIMARY_50};
+  border-bottom-color: ${({ error }) => error && theme.ERROR_50};
 
   :focus {
     outline: none;
