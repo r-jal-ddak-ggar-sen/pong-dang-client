@@ -26,6 +26,8 @@ const Typo = ({
   return (
     <TagComponent
       style={{
+        fontFamily:
+          style.weight === 700 ? 'IM_Hyemin-Bold' : 'IM_Hyemin-Regular',
         fontSize: style.size,
         fontWeight: style.weight,
         color: color,
