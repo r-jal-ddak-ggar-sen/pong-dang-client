@@ -14,12 +14,20 @@ export function Layout({
   backgroundColor = 'WHITE',
 }: LayoutProps): ReactElement {
   return (
-    <StyledWrapper backgroundColor={backgroundColor}>
-      {header}
-      <ContentsWrapper>{children}</ContentsWrapper>
-    </StyledWrapper>
+    <BackgroundWrapper>
+      <StyledWrapper backgroundColor={backgroundColor}>
+        {header}
+        <ContentsWrapper>{children}</ContentsWrapper>
+      </StyledWrapper>
+    </BackgroundWrapper>
   );
 }
+
+const BackgroundWrapper = styled.div`
+  width: 100vw;
+  height: 100vh;
+  background-color: ${({ theme }) => theme.SECONDARY_BLUE_05};
+`;
 
 const StyledWrapper = styled.div<{ backgroundColor: keyof Theme }>`
   width: 100%;
