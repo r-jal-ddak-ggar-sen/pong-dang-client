@@ -6,7 +6,7 @@ import Header from 'components/Header';
 
 export default function signin() {
   return (
-    <Layout header={<Header title="로그인" />}>
+    <Layout header={<Header title="로그인" isBack />}>
       <SigninForm />
     </Layout>
   );

@@ -6,7 +6,7 @@ import React from 'react';
 
 export default function signup() {
   return (
-    <Layout header={<Header title="회원가입" />}>
+    <Layout header={<Header title="회원가입" isBack />}>
       <SignupForm />
     </Layout>
   );

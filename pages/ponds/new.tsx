@@ -7,6 +7,7 @@ import Modal from 'components/Modal';
 import TextInput from 'components/TextInput';
 import Typo from 'components/Typo';
 import UserContext from 'context/user';
+import Router, { useRouter } from 'next/router';
 import React, {
   ReactElement,
   useCallback,
@@ -63,6 +64,7 @@ export default function NewPond(): ReactElement {
     setBackgroundUrl(data?.info?.backgroundUrl?.[0]);
   }, [data]);
   const { mid } = useContext(UserContext);
+  const router = useRouter();
   const hadnleSubmit = useCallback(async () => {
     const result = await instance.post('/pond', {
       title: pondName,
@@ -70,7 +72,9 @@ export default function NewPond(): ReactElement {
       backgroundUrl,
       mid,
     });
-    console.log(result);
+    if (result.data.returnCode === '0000') {
+      router.push('/');
+    }
   }, [pondName, backgroundUrl, friendList, mid]);
 
   return (

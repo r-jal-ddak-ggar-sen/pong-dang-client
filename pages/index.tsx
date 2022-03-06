@@ -10,6 +10,7 @@ import { Layout } from 'components/Layout';
 import { samplePondList } from './samplePondList';
 import { useRouter } from 'next/router';
 import UserContext from 'context/user';
+import MakeButton from '../public/assets/images/make-pond.svg';
 
 export default function Home() {
   const [visibleModal, setVisibleModal] = useState(false);
@@ -38,42 +39,44 @@ export default function Home() {
       }
       backgroundColor={'GRAY_05'}
     >
-      <Link href={'/ponds/new'}>
-        <MakePondButton>
-          <Typo align="center">연못만들기</Typo>
-        </MakePondButton>
-      </Link>
-      <PondList>
-        {samplePondList.length <= 0 ? (
-          <NonePond>
-            <Typo color="GRAY_50" align="center">
-              아직 연못이 없어요 :)
-              <br />
-              친구와 함께 연못을 만들어봐요!
-            </Typo>
-          </NonePond>
-        ) : (
-          samplePondList.map((value) => {
-            return (
-              <Link key={value.id} href={`/ponds/${value.id}`}>
-                <PondItem key={`pond-${value.id}`}>
-                  <PondItemInfo>
-                    <Typo font="TITLE_01" css={{ marginBottom: 8 }}>
-                      {value.title}
-                    </Typo>
-                    <Typo font="BODY_02" color="GRAY_70">
-                      {value.owners[0]}{' '}
-                      {value.owners.length > 1 &&
-                        `외 ${value.owners.length - 1}명`}
-                    </Typo>
-                  </PondItemInfo>
-                  <PondItemImage src={value.backgroundImage} />
-                </PondItem>
-              </Link>
-            );
-          })
-        )}
-      </PondList>
+      <Container>
+        <Link href={'/ponds/new'}>
+          <MakePondButton>
+            <MakeButton />
+          </MakePondButton>
+        </Link>
+        <PondList>
+          {samplePondList.length <= 0 ? (
+            <NonePond>
+              <Typo color="GRAY_50" align="center">
+                아직 연못이 없어요 :)
+                <br />
+                친구와 함께 연못을 만들어봐요!
+              </Typo>
+            </NonePond>
+          ) : (
+            samplePondList.map((value) => {
+              return (
+                <Link key={value.id} href={`/ponds/${value.id}`}>
+                  <PondItem key={`pond-${value.id}`}>
+                    <PondItemInfo>
+                      <Typo font="TITLE_01" css={{ marginBottom: 8 }}>
+                        {value.title}
+                      </Typo>
+                      <Typo font="BODY_02" color="GRAY_70">
+                        {value.owners[0]}{' '}
+                        {value.owners.length > 1 &&
+                          `외 ${value.owners.length - 1}명`}
+                      </Typo>
+                    </PondItemInfo>
+                    <PondItemImage src={value.backgroundImage} />
+                  </PondItem>
+                </Link>
+              );
+            })
+          )}
+        </PondList>
+      </Container>
       {visibleModal && (
         <Modal
           title="로그아웃 하시겠어요?"
@@ -88,16 +91,20 @@ export default function Home() {
   );
 }
 
+const Container = styled.div`
+  margin-top: 80px;
+  text-align: center;
+`;
+
 const MakePondButton = styled.a`
   width: 80px;
   height: 80px;
   display: inline-flex;
   justify-content: center;
   align-items: center;
-  background-color: ${({ theme }) => theme.GRAY_20};
   border-radius: 50%;
-  padding-top: 80px;
   margin-bottom: 32px;
+  margin: auto;
 `;
 
 const NonePond = styled.div`

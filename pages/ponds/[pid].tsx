@@ -55,7 +55,7 @@ export default function Pond({ pondId }: Props) {
           </Typo>
         </ShowDiaryButton>
       </Link>
-      <Link href="/write">
+      <Link href={`/ponds/${pondId}/diaries/new`}>
         <WriteButton>
           <WriteIcon />
         </WriteButton>
